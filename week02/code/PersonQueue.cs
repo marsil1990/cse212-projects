@@ -16,10 +16,10 @@ public class PersonQueue
         _queue.Insert(0, person);
     }
 
-    public Person Dequeue()
+    public Person Dequeue() //
     {
-        var person = _queue[0];
-        _queue.RemoveAt(0);
+        var person = _queue[Length - 1];//Change
+        _queue.RemoveAt(Length - 1); //change->before was  _queue.RemoveAt(0)
         return person;
     }
 

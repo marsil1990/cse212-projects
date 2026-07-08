@@ -1,42 +1,55 @@
-﻿public static class MysteryStack2 {
-    private static bool IsFloat(string text) {
+﻿public static class MysteryStack2
+{
+    private static bool IsFloat(string text)
+    {
         return float.TryParse(text, out _);
     }
 
-    public static float Run(string text) {
+    public static float Run(string text)
+    {
         var stack = new Stack<float>();
-        foreach (var item in text.Split(' ')) {
-            if (item == "+" || item == "-" || item == "*" || item == "/") {
+        foreach (var item in text.Split(' '))
+        {
+            if (item == "+" || item == "-" || item == "*" || item == "/")
+            {
                 if (stack.Count < 2)
                     throw new ApplicationException("Invalid Case 1!");
 
                 var op2 = stack.Pop();
                 var op1 = stack.Pop();
                 float res;
-                if (item == "+") {
+                if (item == "+")
+                {
                     res = op1 + op2;
                 }
-                else if (item == "-") {
+                else if (item == "-")
+                {
                     res = op1 - op2;
                 }
-                else if (item == "*") {
+                else if (item == "*")
+                {
                     res = op1 * op2;
-                }
-                else {
+                }                      //5 3 7 + *-> [5 3 7 + *]
+                else
+                {                 //[5, 3, 7] 3 + 7=10 [5,10] 5*10 [50]
                     if (op2 == 0)
                         throw new ApplicationException("Invalid Case 2!");
 
                     res = op1 / op2;
                 }
 
-                stack.Push(res);
+                stack.Push(res);   //6 2 + 5 3 - /
+                                   // 6 2 -> 6+2=8 [8,5,3]5-3=2 [8,2] 8/2=4 
             }
-            else if (IsFloat(item)) {
+            else if (IsFloat(item))
+            {
                 stack.Push(float.Parse(item));
             }
-            else if (item == "") {
+            else if (item == "")
+            {
             }
-            else {
+            else
+            {
                 throw new ApplicationException("Invalid Case 3!");
             }
         }
