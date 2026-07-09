@@ -28,7 +28,7 @@ public static class SetsAndMaps
         foreach (string w in setPairs)
         {
             var newWord = "";
-            var beforechar = newWord;
+
             foreach (char c in w)     //am  
             {
                 if (c + "" != newWord) { newWord = c + newWord; }
