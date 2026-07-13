@@ -1,5 +1,7 @@
-﻿public static class UniqueLetters {
-    public static void Run() {
+﻿public static class UniqueLetters
+{
+    public static void Run()
+    {
         var test1 = "abcdefghjiklmnopqrstuvwxyz"; // Expect True because all letters unique
         Console.WriteLine(AreUniqueLetters(test1));
 
@@ -13,16 +15,35 @@
     /// <summary>Determine if there are any duplicate letters in the text provided</summary>
     /// <param name="text">Text to check for duplicate letters</param>
     /// <returns>true if all letters are unique, otherwise false</returns>
-    private static bool AreUniqueLetters(string text) {
+
+    //To resolve this in less than O(n^2) we need to use a SET. First we create an empty SET, and we iterate through 
+    // the text without space. We add the letter if it is not contained in the SET, if a letter is already in the SET the
+    // loop ends and the function returns false. If the loop ended and set.Contains never return true, then the function will return true 
+    private static bool AreUniqueLetters(string text)
+    {
         // TODO Problem 1 - Replace the O(n^2) algorithm to use sets and O(n) efficiency
-        for (var i = 0; i < text.Length; ++i) {
-            for (var j = 0; j < text.Length; ++j) {
-                // Don't want to compare to yourself ... that will always result in a match
-                if (i != j && text[i] == text[j])
-                    return false;
+        // for (var i = 0; i < text.Length; ++i)
+        // {
+        //     for (var j = 0; j < text.Length; ++j)
+        //     {
+        //         // Don't want to compare to yourself ... that will always result in a match
+        //         if (i != j && text[i] == text[j])
+        //             return false;
+        //     }
+        // }
+        // return true;
+        var setUniqueLetter = new HashSet<char>();
+        foreach (char l in text.Replace(" ", "").ToLower())
+        {
+            if (char.IsLetter(l) && !setUniqueLetter.Contains(l))
+            {
+                setUniqueLetter.Add(l);
+            }
+            else
+            {
+                return false;
             }
         }
-
         return true;
     }
 }

@@ -13,6 +13,7 @@ public class CustomerService
         // Test Cases
 
         // Test 1
+
         // Scenario: Include 0 as max size to verify if the default value is used (10).
         // Expected Result: It must use 10 as the max size by default.
         Console.WriteLine("Test 1");
@@ -24,7 +25,9 @@ public class CustomerService
 
 
 
+
         Console.WriteLine("=================");
+
 
         // Test 2
         // Scenario: Include a customer 12 to a maxsize of 11
@@ -46,9 +49,8 @@ public class CustomerService
         service.AddNewCustomer();
         Console.WriteLine($"Service Queue: {service}");
 
-        Console.WriteLine("=================");
 
-        // Add more Test Cases As Needed Below
+        Console.WriteLine("=================");
 
 
         // Test 3
@@ -102,6 +104,7 @@ public class CustomerService
         // Defect(s) Found: This found that I need to check the length in ServeCustomer and display an error message.
 
         Console.WriteLine("=================");
+
     }
 
     private readonly List<Customer> _queue = new();
@@ -145,6 +148,8 @@ public class CustomerService
     private void AddNewCustomer()
     {
         // Verify there is room in the service queue
+        // I fixed this adding >=
+
         if (_queue.Count >= _maxSize)
         {
             Console.WriteLine("Maximum Number of Customers in Queue.");
@@ -168,6 +173,7 @@ public class CustomerService
     /// </summary>
     private void ServeCustomer()
     {
+
         if (_queue.Count <= 0)
         {
             Console.WriteLine("No Customers in the queue");
@@ -179,6 +185,7 @@ public class CustomerService
             _queue.RemoveAt(0);
             Console.WriteLine(customer);
         }
+
     }
 
     /// <summary>
