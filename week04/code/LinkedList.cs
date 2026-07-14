@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 
 public class LinkedList : IEnumerable<int>
 {
@@ -33,6 +34,19 @@ public class LinkedList : IEnumerable<int>
     public void InsertTail(int value)
     {
         // TODO Problem 1
+        Node newNode = new(value);
+        if (_head is null)
+        {
+            _head = newNode;
+            _tail = newNode;
+
+        }
+        else
+        {
+            newNode.Prev = _tail;
+            _tail.Next = newNode;
+            _tail = newNode;
+        }
     }
 
 
@@ -65,6 +79,17 @@ public class LinkedList : IEnumerable<int>
     public void RemoveTail()
     {
         // TODO Problem 2
+        if (_head == _tail)
+        {
+            _head = null;
+            _tail = null;
+        }
+        else
+        {
+            _tail.Prev.Next = null;
+            _tail = _tail.Prev;
+
+        }
     }
 
     /// <summary>
@@ -109,6 +134,48 @@ public class LinkedList : IEnumerable<int>
     public void Remove(int value)
     {
         // TODO Problem 3
+        if (_head != null)
+        {
+            if (value == _head.Data)
+            {
+                RemoveHead();
+            }
+            else if (value == _tail.Data)
+            {
+                RemoveTail();
+            }
+            else
+            {
+                var aux = _head;
+
+                {
+                    while (aux.Data != value && aux.Next != null) // 1  
+                    {
+                        aux = aux.Next;
+                    }
+                    if (aux.Data == value)
+                    {
+                        if (aux.Prev != null)
+                        {
+                            aux.Prev.Next = aux.Next;
+                        }
+
+                        if (aux.Next != null)
+                        {
+                            aux.Next.Prev = aux.Prev;
+                        }
+
+                        aux.Next = null;
+                        aux.Prev = null;
+                    }
+
+                }
+            }
+
+        }
+
+
+
     }
 
     /// <summary>
@@ -168,8 +235,10 @@ public class LinkedList : IEnumerable<int>
     }
 }
 
-public static class IntArrayExtensionMethods {
-    public static string AsString(this IEnumerable array) {
+public static class IntArrayExtensionMethods
+{
+    public static string AsString(this IEnumerable array)
+    {
         return "<IEnumerable>{" + string.Join(", ", array.Cast<int>()) + "}";
     }
 }
