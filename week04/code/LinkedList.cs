@@ -140,17 +140,13 @@ public class LinkedList : IEnumerable<int>
             {
                 RemoveHead();
             }
-            else if (value == _tail.Data)
-            {
-                RemoveTail();
-            }
             else
             {
                 var aux = _head;
-
                 {
-                    while (aux.Data != value && aux.Next != null) // 1  
+                    while (aux.Next != null && aux.Data != value) // 1  
                     {
+
                         aux = aux.Next;
                     }
                     if (aux.Data == value)
@@ -169,13 +165,11 @@ public class LinkedList : IEnumerable<int>
                         aux.Prev = null;
                     }
 
+
                 }
             }
 
         }
-
-
-
     }
 
     /// <summary>
@@ -184,6 +178,18 @@ public class LinkedList : IEnumerable<int>
     public void Replace(int oldValue, int newValue)
     {
         // TODO Problem 4
+        if (_head != null)
+        {
+            var aux = _head;
+            while (aux != null)
+            {
+                if (aux.Data == oldValue)
+                {
+                    aux.Data = newValue;
+                }
+                aux = aux.Next;
+            }
+        }
     }
 
     /// <summary>
@@ -211,10 +217,15 @@ public class LinkedList : IEnumerable<int>
     /// <summary>
     /// Iterate backward through the Linked List
     /// </summary>
-    public IEnumerable Reverse()
+    public IEnumerable<int> Reverse()
     {
         // TODO Problem 5
-        yield return 0; // replace this line with the correct yield return statement(s)
+        var aux = _tail;
+        while (aux is not null)
+        {
+            yield return aux.Data;
+            aux = aux.Prev;
+        } // replace this line with the correct yield return statement(s)
     }
 
     public override string ToString()
