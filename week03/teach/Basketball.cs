@@ -39,10 +39,16 @@ public class Basketball
             }
         }
 
-        Console.WriteLine($"Players: {{{string.Join(", ", players)}}}");
+
 
         var topPlayers = playerPoints.ToArray();
         Array.Sort(topPlayers, (p1, p2) => p2.Value - p1.Value);
 
+
+
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine(topPlayers[i]);
+        }
     }
 }
