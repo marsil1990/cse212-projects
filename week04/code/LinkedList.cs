@@ -160,6 +160,11 @@ public class LinkedList : IEnumerable<int>
                         {
                             aux.Next.Prev = aux.Prev;
                         }
+                        else
+                        {
+
+                            _tail = aux.Prev;
+                        }
 
                         aux.Next = null;
                         aux.Prev = null;
