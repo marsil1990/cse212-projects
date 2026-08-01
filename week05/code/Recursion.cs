@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using System.Security;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 public static class Recursion
 {
@@ -175,6 +177,13 @@ public static class Recursion
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
+
+        // currPath.Add((1,2)); // Use this syntax to add to the current path
+
+        // TODO Start Problem 5
+        // ADD CODE HERE
+
+        // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
         if (currPath == null)
         {
             currPath = new List<ValueTuple<int, int>>();
@@ -220,10 +229,6 @@ public static class Recursion
 
 
 
-    // currPath.Add((1,2)); // Use this syntax to add to the current path
 
-    // TODO Start Problem 5
-    // ADD CODE HERE
-
-    // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
 }
+
