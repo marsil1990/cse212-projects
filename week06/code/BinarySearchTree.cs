@@ -90,7 +90,6 @@ public class BinarySearchTree : IEnumerable<int>
             values.Add(node.Data);
             TraverseBackward(node.Left, values);
 
-
         }
     }
 
